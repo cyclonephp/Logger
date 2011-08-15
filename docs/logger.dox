@@ -1,0 +1,118 @@
+<?php
+
+/**
+ * @addtogroup logger Logger
+ * 
+ * The logger module is a very simple logging utility. In short,
+ * it enables you to
+ * - add log entries with the 4 classic log levels
+ * - write your log entries to different outputs
+ * - define different log writers (adapters) for different namespaces
+ * - define multiple log adapters for the same namespace
+ * - turn off logging with an "empty" log adapter
+ * 
+ * @section Configuration
+ * 
+ * The logger is configured in the \c logger.* configuration namespace.
+ * If you use the default configuration reader, you have to edit the
+ * \c config/logger.php configuration file. In this file the important
+ * keys are:
+ * - log_level: it's value can be one of the followings:
+ * 		- \c Log::DEBUG
+ * 		- \c Log::INFO
+ * 		- \c Log::WARNING
+ * 		- \c Log::ERROR
+ * Only those log entries will be written to the output which' log level
+ * is greater or equal to the current log level of the system. For example
+ * if the current log level (defined in this config key) is \c Log::INFO
+ * then the \c Log::DEBUG messages will be dropped by the adapters.
+ * - adapters: this is a key-value pair where the keys are "namespaces"
+ * (class name prefixes) and the values are objects implementing the 
+ * \c Log_Adapter interface.
+ * 
+ * Example \c logger.php:
+ * @code
+ * <?php
+ * return array(
+ * 		'log_level' => Log::INFO,
+ * 		'adapters' => array(
+ * 			'' => new Log_Adapter_File(APPPATH . 'logs/'),
+ * 			'DB' => new Log_Adapter_File(APPPATH . 'logs/sql/'),
+ * 			'Controller' => new Log_Adapter_DB('log', array(
+ * 				'time' => 'created_at',
+ * 				'message' => 'text',
+ * 				'level' => 'level'
+ * 			)),
+ * 			'Controller_Admin' => Log_Adapter_Composite::build()
+ * 				->add(new Log_Adapter_File(APPPATH . 'logs/admin/'))
+ * 				->add(new Log_Adapter_DB('admin_log', array(
+ *	 				'time' => 'created_at',
+ * 					'message' => 'text',
+ * 					'level' => 'level'
+ * 				)
+ * 			))
+ * 		) 
+ * );
+ * @endcode
+ * 
+ * The corresponding adapter for a class can be obtained with a 
+ * \c Log::for_class($class) call.
+ * 
+ * When you want to get a log adapter using \c Log::for_class($class)
+ * then this factory method checks each namespace as a prefix from the
+ * adapter list. It checks if the namespace is the prefix of the searched
+ * classname, and returns the adapter for the longest matching namespace.
+ * If the \c $class parameter is an object then the method will search
+ * for its class name.
+ * 
+ * In the above example a \c Log::for_class('Srv_Something') will return
+ * the first \c Log_Adapter_File instance, since the longest matching 
+ * namespace is the empty namespace (it should be used as a default adapter,
+ * since it always matches if no else namespace does).
+ * 
+ * <em>Note: as you can see, the adapter configuration is done using the
+ * config module. In this example we simply used a file config reader,
+ * but you can take the advantage of the flexibility of the config module
+ * for setting up your log adapters. You can use different adapters in
+ * different environments, store your adapters in the database, etc.</em>
+ * 
+ * @section Adding log entries
+ * 
+ * There is a corresponding method for adding log entries for each log levels
+ * in the \c Log_Adapter interface. These are
+ * - \c add_debug($message, $code = NULL)
+ * - \c add_info($message, $code = NULL)
+ * - \c add_warning($message, $code = NULL)
+ * - \c add_error($message, $code = NULL)
+ * 
+ * Since objects are "converted" into their class names in the 
+ * \c Log::for_class($class) method, you will pass \c $this as the parameter
+ * for \c Log::for_class() . So let's see a class that uses the logger:
+ * 
+ * @code
+ * <?php
+ * 
+ * class Srv_Whatever {
+ * 
+ * private static $_log;
+ * 
+ * public function __construct() {
+ * 		if (NULL === self::$_log) {
+ * 			self::$_log = Log::for_class($this);
+ * 		}
+ * }
+ * 
+ * public function do_something() {
+ * 		// ...
+ * 		self::$_log->add_error('Houston, we have a problem');
+ * 		// ...
+ * }
+ *  
+ * }
+ * @endcode
+ * 
+ * That's all you should basicly know about the logger module. By default, CyclonePHP
+ * is configured to use a \c Log_Adapter_File instance in the default namespace.
+ * For further documentation about the adapters look at the API docs.
+ * 
+ */
