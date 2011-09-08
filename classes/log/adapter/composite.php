@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Bence Eros <crystal@cyclonephp.com>
+ * @package logger
+ */
 class Log_Adapter_Composite extends Log_Adapter_Abstract {
 
     public static function factory() {

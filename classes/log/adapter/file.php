@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @addtogroup logger
- *
  * Writes log entries to plain text files. It creates separate subdirectories
  * in its root directory for each year and month, and puts the entries into
  * separate files for each days. For example if the current date is 2011.05.22
  * then the log entries will be written to @code <root-dir>/2011/05/22.php @endcode .
+ * 
+ * @package logger
  */
 class Log_Adapter_File extends Log_Adapter_Abstract {
 

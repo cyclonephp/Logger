@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Bence Eros <crystal@cyclonephp.com>
+ * @package logger
+ */
 interface Log_Adapter {
 
     public function add_entry($level, $message, $code = NULL);

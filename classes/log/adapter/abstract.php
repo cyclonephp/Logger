@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Bence Eros <crystal@cyclonephp.com>
+ * @package logger
+ */
 abstract class Log_Adapter_Abstract implements Log_Adapter {
 
     protected $_entries = array();

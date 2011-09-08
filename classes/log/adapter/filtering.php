@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Bence Eros <crystal@cyclonephp.com>
+ * @package logger
+ */
 class Log_Adapter_Filtering extends Log_Adapter_Abstract {
 
     protected $_final_adapter;

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @addtogroup logger
- *
  * Logger adapter that uses SimpleDB for logging.
+ * 
+ * @package logger
  */
 class Log_Adapter_DB extends Log_Adapter_Abstract {
 

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Bence Eros <crystal@cyclonephp.com>
+ * @package logger
+ */
 class Log_Adapter_FirePHP implements Log_Adapter {
 
     public function add_debug($message, $code = NULL) {
