@@ -2,13 +2,15 @@
 
 namespace cyclone\log\adapter;
 
+use cyclone\log;
+
 /**
  * An empty logger that doesn't do anything. All method bodies are empty. It can
  * be used to turn off logging for a namespace.
  * 
  * @package logger
  */
-class EmptyAdapter implements AbstractAdapter {
+class EmptyAdapter implements log\LogAdapter {
 
     public function add_debug($message, $code = NULL) {
 

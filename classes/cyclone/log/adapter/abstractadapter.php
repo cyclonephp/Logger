@@ -30,7 +30,7 @@ abstract class AbstractAdapter implements log\LogAdapter {
     public function add_entry($level, $message, $code = NULL) {
         if (cy\Log::$level_order[$level] >= cy\Log::$level_order[cy\Log::$log_level]) {
             $this->_entries []= array(
-                'level' => 'level',
+                'level' => $level,
                 'time' => date($this->_time_format),
                 'message' => $message,
                 'remote_addr' => self::$_remote_addr,

@@ -2,6 +2,8 @@
 
 namespace cyclone\log\adapter;
 
+use cyclone as cy;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger

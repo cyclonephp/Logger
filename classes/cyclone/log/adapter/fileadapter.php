@@ -48,7 +48,7 @@ class FileAdapter extends AbstractAdapter {
             mkdir($directory, $this->_umask, true);
         }
 
-        $file = $directory . qDIRECTORY_SEPARATOR . date('d') . EXT;
+        $file = $directory . \DIRECTORY_SEPARATOR . date('d') . EXT;
         if ( !file_exists($file)) {
             file_put_contents($file, \cyclone\Kohana::FILE_SECURITY.' ?>'.PHP_EOL);
             chmod($file, $this->_umask);
@@ -60,7 +60,7 @@ class FileAdapter extends AbstractAdapter {
             $entries_txt []= strtr($this->_entry_format, $entry) . PHP_EOL;
         }
 
-        file_put_contents($file, $entries_txt, FILE_APPEND);
+        file_put_contents($file, $entries_txt, \FILE_APPEND);
     }
     
 }
