@@ -1,11 +1,15 @@
 <?php
 
+namespace cyclone\log\adapter;
+
+use cyclone as cy;
+
 /**
  * Logger adapter that uses SimpleDB for logging.
  * 
  * @package logger
  */
-class Log_Adapter_DB extends Log_Adapter_Abstract {
+class DBAdapter extends AbstractAdapter {
 
     private $_db_config;
 
@@ -22,11 +26,11 @@ class Log_Adapter_DB extends Log_Adapter_Abstract {
      *      and the values are database column names (in the \c $table_name table) where
      *      the given property should be written.
      *      Possible keys (entry properties):
-     *          - \c message
-     *          - \c level
-     *          - \c time
-     *          - \c remote_addr
-     *          - \c code
+     *          - <code>message</code>
+     *          - <code>level</code>
+     *          - <code>time</code>
+     *          - <code>remote_addr</code>
+     *          - <code>code</code>
      * @param string $time_format
      * @param string $db_config
      */
@@ -39,7 +43,7 @@ class Log_Adapter_DB extends Log_Adapter_Abstract {
     }
 
     public function write_entries() {
-        $stmt = DB::insert($this->_table_name);
+        $stmt = cy\DB::insert($this->_table_name);
         $msg_col = $this->_columns['messages'];
         $time_col = $this->_columns['time'];
         foreach ($this->_entries as $entry) {

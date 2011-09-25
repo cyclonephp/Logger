@@ -1,16 +1,20 @@
 <?php
 
+namespace cyclone\log\adapter;
+
+use cyclone as cy;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger
  */
-class Log_Adapter_Filtering extends Log_Adapter_Abstract {
+class FilteringAdapter extends AbstractAdapter {
 
     protected $_final_adapter;
 
     protected $_callback;
 
-    public function  __construct(Log_Adapter $final_adapter, $callback) {
+    public function  __construct(AbstractAdapter $final_adapter, $callback) {
         $this->_final_adapter = $final_adapter;
         if ( ! is_callable($callback))
             throw new Log_Exception('invalid callback');
@@ -30,7 +34,7 @@ class Log_Adapter_Filtering extends Log_Adapter_Abstract {
             'remote_addr' => self::$_remote_addr,
             'code' => $code
         );
-        if (Log::$level_order[$level] >= Log::$level_order[Log::$log_level]
+        if (cy\Log::$level_order[$level] >= cy\Log::$level_order[Log::$log_level]
                 && call_user_func($this->_callback, $entry)) {
             $this->_entries []= $entry;
         }

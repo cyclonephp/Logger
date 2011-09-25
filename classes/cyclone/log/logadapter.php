@@ -1,10 +1,12 @@
 <?php
 
+namespace cyclone\log;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger
  */
-interface Log_Adapter {
+interface LogAdapter {
 
     public function add_entry($level, $message, $code = NULL);
 

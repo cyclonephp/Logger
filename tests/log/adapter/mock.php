@@ -1,6 +1,6 @@
 <?php
 
-class Log_Adapter_Mock extends Log_Adapter_Abstract {
+class Log_Adapter_Mock extends cyclone\log\adapter\AbstractAdapter {
 
     public $entries;
 

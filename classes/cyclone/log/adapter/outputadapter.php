@@ -1,10 +1,12 @@
 <?php
 
+namespace cyclone\log\adapter;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger
  */
-class Log_Adapter_Output extends Log_Adapter_Abstract {
+class OutputAdapter extends AbstractAdapter {
 
     protected $_entry_format;
 
@@ -16,7 +18,7 @@ class Log_Adapter_Output extends Log_Adapter_Abstract {
 
     public function  write_entries() {
         foreach ($this->_entries as $entry) {
-            echo strtr($this->_entry_format, $entry) . Env::$eol;
+            echo strtr($this->_entry_format, $entry) . cy\Env::$eol;
         }
     }
 

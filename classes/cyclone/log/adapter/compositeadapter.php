@@ -1,13 +1,15 @@
 <?php
 
+namespace cyclone\log\adapter;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger
  */
-class Log_Adapter_Composite extends Log_Adapter_Abstract {
+class CompositeAdapter extends AbstractAdapter {
 
     public static function factory() {
-        return new Log_Adapter_Composite;
+        return new CompositeAdapter;
     }
 
     private $_adapters;
@@ -15,10 +17,10 @@ class Log_Adapter_Composite extends Log_Adapter_Abstract {
     /**
      * Add the adapter to the adapter list
      * 
-     * @param Log_Adapter $adapter
-     * @return Log_Adapter_Composite
+     * @param AbstractAdapter $adapter
+     * @return CompositeAdapter <code>$this</code>
      */
-    public function add(Log_Adapter $adapter) {
+    public function add(AbstractAdapter $adapter) {
         $this->_adapters []= $adapter;
         return $this;
     }

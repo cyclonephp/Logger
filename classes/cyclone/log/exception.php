@@ -1,7 +1,9 @@
 <?php
 
+namespace cyclone\log;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger
  */
-class Log_Exception extends Exception {}
+class Exception extends \Exception {}

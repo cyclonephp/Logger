@@ -1,10 +1,15 @@
 <?php
 
+namespace cyclone\log\adapter;
+
+use cyclone\log;
+use cyclone as cy;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger
  */
-abstract class Log_Adapter_Abstract implements Log_Adapter {
+abstract class AbstractAdapter implements log\LogAdapter {
 
     protected $_entries = array();
 
@@ -23,7 +28,7 @@ abstract class Log_Adapter_Abstract implements Log_Adapter {
     }
 
     public function add_entry($level, $message, $code = NULL) {
-        if (Log::$level_order[$level] >= Log::$level_order[Log::$log_level]) {
+        if (cy\Log::$level_order[$level] >= cy\Log::$level_order[cy\Log::$log_level]) {
             $this->_entries []= array(
                 'level' => 'level',
                 'time' => date($this->_time_format),
@@ -35,19 +40,19 @@ abstract class Log_Adapter_Abstract implements Log_Adapter {
     }
 
     public function add_debug($message, $code = NULL) {
-        $this->add_entry(Log::DEBUG, $message, $code);
+        $this->add_entry(cy\Log::DEBUG, $message, $code);
     }
 
     public function add_info($message, $code = NULL) {
-        $this->add_entry(Log::INFO, $message, $code);
+        $this->add_entry(cy\Log::INFO, $message, $code);
     }
 
     public function add_warning($message, $code = NULL) {
-        $this->add_entry(Log::WARNING, $message, $code);
+        $this->add_entry(cy\Log::WARNING, $message, $code);
     }
 
     public function add_error($message, $code = NULL) {
-        $this->add_entry(Log::ERROR, $message, $code);
+        $this->add_entry(cy\Log::ERROR, $message, $code);
     }
 
 }

@@ -3,6 +3,6 @@
 return array(
     'log_level' => Log::DEBUG,
     'adapters' => array(
-        '' => new Log_Adapter_File(APPPATH . 'logs' . DIRECTORY_SEPARATOR)
+        '' => new cyclone\log\adapter\FileAdapter(APPPATH . 'logs' . DIRECTORY_SEPARATOR)
     )
 );

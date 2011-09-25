@@ -1,5 +1,7 @@
 <?php
 
+namespace cyclone;
+
 /**
  * @author Bence Eros <crystal@cyclonephp.com>
  * @package logger
@@ -56,7 +58,7 @@ class Log {
                 }
             }
             if (NULL === $longest_matching_prefix)
-                throw new Log_Exception("No logger found for '$class'");
+                throw new log\Exception("No logger found for '$class'");
             self::$_instances[$class] = self::$_log_cfg[$longest_matching_prefix];
         }
         return self::$_instances[$class];

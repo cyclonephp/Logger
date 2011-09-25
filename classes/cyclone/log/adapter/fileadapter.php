@@ -1,5 +1,7 @@
 <?php
 
+namespace cyclone\log\adapter;
+
 /**
  * Writes log entries to plain text files. It creates separate subdirectories
  * in its root directory for each year and month, and puts the entries into
@@ -8,7 +10,7 @@
  * 
  * @package logger
  */
-class Log_Adapter_File extends Log_Adapter_Abstract {
+class FileAdapter extends AbstractAdapter {
 
     protected $_root_log_path;
 
@@ -40,15 +42,15 @@ class Log_Adapter_File extends Log_Adapter_Abstract {
     public function write_entries() {
         $directory = $this->_root_log_path
                 . date('Y')
-                . DIRECTORY_SEPARATOR
+                . \DIRECTORY_SEPARATOR
                 . date('m');
         if ( ! file_exists($directory)) {
             mkdir($directory, $this->_umask, true);
         }
 
-        $file = $directory . DIRECTORY_SEPARATOR . date('d') . EXT;
+        $file = $directory . qDIRECTORY_SEPARATOR . date('d') . EXT;
         if ( !file_exists($file)) {
-            file_put_contents($file, Kohana::FILE_SECURITY.' ?>'.PHP_EOL);
+            file_put_contents($file, \cyclone\Kohana::FILE_SECURITY.' ?>'.PHP_EOL);
             chmod($file, $this->_umask);
         }
 
