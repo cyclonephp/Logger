@@ -21,11 +21,11 @@ class FileAdapter extends AbstractAdapter {
     protected $_umask;
 
     /**
-     * Initializes the adapter and registers \c $this->write_entries()
+     * Initializes the adapter and registers @c $this->write_entries()
      * as as shutdown function to ensure that the log entries will be written.
      *
      * @param string $root_log_path the root directory of the log files. The parameter should end with DIRECTORY_SEPARATOR
-     * @param string $time_format the parameter of \c date() when an entry is added and its creation time is determined.
+     * @param string $time_format the parameter of @c date() when an entry is added and its creation time is determined.
      * @param string $entry_format a format mask that will be used to format the output for each entries.
      * @param int $umask UNIX file access mask for the created log files and directories
      */

@@ -18,12 +18,12 @@ class DBAdapter extends AbstractAdapter {
     private $_columns;
 
     /**
-     * Initializes the adapter and registers \c $this->write_entries()
+     * Initializes the adapter and registers @c $this->write_entries()
      * as as shutdown function to ensure that the log entries will be written.
      *
      * @param string $table_name the table name where the entries will be inserted
      * @param array $columns key-value pairs where the keys are log entry properties
-     *      and the values are database column names (in the \c $table_name table) where
+     *      and the values are database column names (in the @c $table_name table) where
      *      the given property should be written.
      *      Possible keys (entry properties):
      *          - <code>message</code>

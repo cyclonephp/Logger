@@ -29,7 +29,7 @@ if the current log level (defined in this config key) is <code>Log::INFO</code>
 then the <code>Log::DEBUG</code> messages will be dropped by the adapters.</li>
 <li><code>adapters</code>: this is a key-value pair where the keys are "namespaces"
  (qualified class name prefixes) and the values are objects implementing the 
- \c cyclone\log\LogAdapter interface.
+ @c cyclone\log\LogAdapter interface.
 </li>
 </ul>
 
@@ -71,7 +71,7 @@ The corresponding adapter for a class can be obtained with a
  for its class name.
 
 In the above example a <code>cyclone\Log::for_class('Srv_Something')</code> will return
- the first \c cyclone\log\adapter\FileAdapter instance, since the longest matching 
+ the first @c cyclone\log\adapter\FileAdapter instance, since the longest matching
  namespace is the empty namespace (it should be used as a default adapter,
  since it always matches if no else namespace does).
 
@@ -84,7 +84,7 @@ In the above example a <code>cyclone\Log::for_class('Srv_Something')</code> will
 @section logger-entries Adding log entries
  
  There is a corresponding method for adding log entries for each log levels
- in the \c cyclone\log\LogAdapter interface. These are
+ in the @c cyclone\log\LogAdapter interface. These are
  <ul>
  <li><code>add_debug($message, $code = NULL)</code></li>
  <li><code>add_info($message, $code = NULL)</code></li>
@@ -93,8 +93,8 @@ In the above example a <code>cyclone\Log::for_class('Srv_Something')</code> will
  </ul>
 
 Since objects are "converted" into their class names in the 
-\c cyclone\Log::for_class($class) method, you will pass <code>$this</code> as the parameter
-for \c cyclone\Log::for_class() . So let's see a class that uses the logger:
+@c cyclone\Log::for_class($class) method, you will pass <code>$this</code> as the parameter
+for @c cyclone\Log::for_class() . So let's see a class that uses the logger:
  
 @code
  <?php
@@ -123,5 +123,5 @@ for \c cyclone\Log::for_class() . So let's see a class that uses the logger:
  @endcode
 
 That's all you should basicly know about the logger module. By default, CyclonePHP
-is configured to use a \c Log_Adapter_File instance in the default namespace.
+is configured to use a @c Log_Adapter_File instance in the default namespace.
 For further documentation about the adapters look at the API docs.
