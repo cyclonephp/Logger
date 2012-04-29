@@ -3,7 +3,7 @@
 namespace cyclone\log\adapter;
 
 /**
- * @author Bence Eros <crystal@cyclonephp.com>
+ * @author Bence Eros <crystal@cyclonephp.org>
  * @package logger
  */
 class CompositeAdapter extends AbstractAdapter {

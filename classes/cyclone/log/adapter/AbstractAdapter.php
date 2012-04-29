@@ -6,7 +6,7 @@ use cyclone\log;
 use cyclone as cy;
 
 /**
- * @author Bence Eros <crystal@cyclonephp.com>
+ * @author Bence Eros <crystal@cyclonephp.org>
  * @package logger
  */
 abstract class AbstractAdapter implements log\LogAdapter {
